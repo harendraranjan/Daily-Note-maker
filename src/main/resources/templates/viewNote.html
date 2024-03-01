@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>ViewNote</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid p-2">
+			<h4 class="text-center">All Notes</h4>
+			<th:block th:if="${session.msg}">
+				<p class="text-center text-success" th:text="${session.msg}"></p>
+				<th:block th:text="${@userServiceImpl.removSessionMessage}"></th:block>
+			</th:block>
+			<div class="row">
+				<div th:each="n:${notesList}" class="col-md-10 offset-md-1 mt-2">
+					<div class="card shadow-sm p-1 mb-2 bg-body rounded">
+						<div class="card-body">
+							<div class="text-center">
+								<img alt="" src="">
+							</div>
+							<p class="fw-bold">[[${n.title}]]</p>
+							<p>[[${n.description}]]</p>
+							<p>Date of publish : [[${n.date}]]</p>
+							<div class="text-center">
+								<a th:href="@{'editNote/'+${n.id}}"
+									class="btn btn-primary btn-sm">Edit</a> <a
+									th:href="@{'deletNote/'+${n.id}}"
+									class="btn btn-primary btn-sm">Delete</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 offset-md-1 text-right p-3">
+					<p class="fw-bold">Total Notes:[[${totalElement}]]</p>
+				</div>
+				<div class="col-md-5">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li th:if="${currentPage !=0}" class="page-item"><a
+								class="page-link"
+								th:href="@{'/user/viewNote?pageNo=' + ${currentPage-1}}">Previous</a></li>
+
+							<li class="page-item"
+								th:each="i:${#numbers.sequence(1, totalpage)}"
+								th:classappend="${currentPage == i-1 ? 'active' : ''}"><a
+								class="page-link" th:href="@{'/user/viewNote?pageNo=' + ${i-1}}">[[${i}]]</a>
+							</li>
+							<li th:if="${currentPage+1 != totalpage }" class="page-item"><a
+								class="page-link"
+								th:href="@{'/user/viewNote?pageNo=' + ${currentPage+1}}">Next</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

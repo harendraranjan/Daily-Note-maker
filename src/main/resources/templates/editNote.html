@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Note</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-cart">
+
+						<h1 class="text-center">Contact Form</h1>
+
+						<th:block th:if="${session.msg}">
+							<h1 class="text-center text-success" th:text="${session.msg}"></h1>
+							<th:block th:text="${@userServiceImpl.removSessionMessage}"></th:block>
+						</th:block>
+						<form action="/user/updateNote" method="post">
+							<div class="form-group">
+								<label for="name_field" class="form-label"> your name</label> <input
+									name="title" type="text" class="form-control"
+									th:value="${n.title}" />
+							</div>
+
+							<div class="form-group">
+								<label for="" class="form-label">Enter about you </label>
+								<textarea name="description" class="form-control" cols="20" rows="10">[[${n.description}]]</textarea>
+								<div class="container text-center">
+									<input type="hidden" name="id" th:value="${n.id}">
+									<button class="btn btn-primary">Update</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

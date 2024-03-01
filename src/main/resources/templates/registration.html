@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-cart">
+
+						<h1 class="text-center">Registration Form</h1>
+
+						<th:block th:if="${session.msg}">
+							<h1 class="text-center text-success" th:text="${session.msg}"></h1>
+							<th:block th:text="${@userServiceImpl.removSessionMessage}"></th:block>
+						</th:block>
+
+						<form th:action="@{SeveUser}" method="post">
+
+							<div class="form-group">
+								<label for="name_field" class="form-label"> Name</label> <input
+									name="name" type="text" class="form-control" id="name_field"
+									aria-describedby="emailHelp" placeholder="Enter your name"
+									required="required" />
+							</div>
+							<div class="form-group">
+								<label for="emai_field" class="form-label"> Email</label> <input
+									name="email" type="email" class="form-control" id="email_field"
+									aria-describedby="emailHelp" placeholder="Enter your email"
+									required="required">
+							</div>
+							<div class="form-group">
+								<label for="password" class="form-label">Password</label> <input
+									name="password" type="password" class="form-control"
+									id="password_field" aria-describedby="emailHelp"
+									placeholder="Enter your email" required="required">
+							</div>
+
+							<div class="form-group">
+								<label for="" class="form-label">Enter about you </label>
+								<textarea name="about" class="form-control" id="" cols="20"
+									rows="10" placeholder="Enter something yourself"
+									required="required"></textarea>
+
+
+								<div class="container text-center">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="reset" class="btn btn-primary">Reset</button>
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
