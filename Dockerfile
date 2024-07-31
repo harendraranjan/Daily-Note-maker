@@ -4,5 +4,5 @@ WORKDIR /app
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /app/target/your-application.jar /app/your-application.jar
-CMD ["java", "-jar", "/app/your-application.jar"]
+COPY --from=build /app/target/Enotes_Spting_boot_project-0.0.1-SNAPSHOT.jar /app/app.jar
+CMD ["java", "-jar", "/app/app.jar"]
