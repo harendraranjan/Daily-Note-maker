@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::layout(~{::title},~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::section})}">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Registration</title>
+	<meta charset="ISO-8859-1">
+	<title>Registration</title>
 </head>
+
 <body>
 	<section>
 		<div class="container mt-5">
@@ -22,29 +23,25 @@
 						<form th:action="@{SeveUser}" method="post">
 
 							<div class="form-group">
-								<label for="name_field" class="form-label"> Name</label> <input
-									name="name" type="text" class="form-control" id="name_field"
-									aria-describedby="emailHelp" placeholder="Enter your name"
-									required="required" />
+								<label for="name_field" class="form-label"> Name</label> <input name="name" type="text"
+									class="form-control" id="name_field" aria-describedby="emailHelp"
+									placeholder="Enter your name" required="required" />
 							</div>
 							<div class="form-group">
-								<label for="emai_field" class="form-label"> Email</label> <input
-									name="email" type="email" class="form-control" id="email_field"
-									aria-describedby="emailHelp" placeholder="Enter your email"
-									required="required">
-							</div>
-							<div class="form-group">
-								<label for="password" class="form-label">Password</label> <input
-									name="password" type="password" class="form-control"
-									id="password_field" aria-describedby="emailHelp"
+								<label for="emai_field" class="form-label"> Email</label> <input name="email"
+									type="email" class="form-control" id="email_field" aria-describedby="emailHelp"
 									placeholder="Enter your email" required="required">
+							</div>
+							<div class="form-group">
+								<label for="password" class="form-label">Password</label> <input name="password"
+									type="password" class="form-control" id="password_field"
+									aria-describedby="emailHelp" placeholder="Enter your email" required="required">
 							</div>
 
 							<div class="form-group">
 								<label for="" class="form-label">Enter about you </label>
-								<textarea name="about" class="form-control" id="" cols="20"
-									rows="10" placeholder="Enter something yourself"
-									required="required"></textarea>
+								<textarea name="about" class="form-control" id="" cols="20" rows="10"
+									placeholder="Enter something yourself" required="required"></textarea>
 
 
 								<div class="container text-center">
@@ -60,4 +57,5 @@
 		</div>
 	</section>
 </body>
+
 </html>
