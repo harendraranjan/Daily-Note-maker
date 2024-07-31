@@ -1,23 +1,8 @@
-# Build stage
-FROM openjdk:17-jdk-slim AS build
+FROM maven:3.8.1-openjdk-17-slim as build
+COPY ..
+RUN maven clean package -DskipTests
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /app/target/harendraranjan/Letswork-0.0.1-SNAPSHOT.jar Enotes_Spting_boot_project.jar
+EXPOSE 8080
 
-WORKDIR /app
-
-# Copy necessary files for dependency resolution and build
-COPY pom.xml mvnw ./
-COPY .mvn .mvn
-
-# Resolve dependencies and package the application
-RUN ./mvnw dependency:resolve
-COPY src src
-RUN ./mvnw package -DskipTests
-
-# Production stage
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-
-# Copy the packaged JAR from the build stage
-COPY --from=build /app/target/*.jar app.jar
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "Enotes_Spting_boot_project.jar"]
