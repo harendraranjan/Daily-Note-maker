@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: daily-note-maker-service
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""  # Leave empty if Dockerfile handles building
+    startCommand: ""  # Leave empty if ENTRYPOINT is defined in Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: <your-database-url>
+      - key: ANOTHER_ENV_VAR
+        value: <value>
